@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+
+    <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css//header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+    <link rel="stylesheet" href="../static/css/admin.css" th:href="@{/css/admin.css}">
+
+    <link rel="stylesheet" href="../static/css/logIn.css" th:href="@{/css/logIn.css}">
+
+    <link rel="stylesheet" href="../static/css/dropdownMenu.css" th:href="@{/css/dropdownMenu.css}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+     <header>
+        <div id="logo">
+            <a href="#">LOGO</a>
+        </div>
+
+        <div id="acc">
+            <a th:href="@{/account/{id}(id=${user.getIduser()})}">Пользователь</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="buttons">
+            <nav class="nav" id="users">
+                <input type="button" value="Пользователи" onclick="showTable('users1', 'groups1')">
+            </nav>
+
+            <nav class="nav-2" id="groups">
+                <input type="button" value="Группы" onclick="showTable('groups1', 'users1')">
+            </nav>
+        </div>
+
+        <section id="users1" class="users-main">
+            <div class="statements-table">
+                <table> 
+                    <thead>
+                        <tr>
+                            <th>Фамилия</th>
+                            <th>Имя</th>
+                            <th>E-mail</th>
+                            <th>Номер телефона</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <th:block th:if="${!user.getRoleList().contains('ROLE_ADMIN')}">
+                                <td th:text="${user.getLastname()}"></td>
+                                <td th:text="${user.getUsername()}"></td>
+                                <td th:text="${user.getEmail()}"></td>
+                                <td th:text="${user.getPhone()}"></td>
+                                <td class="last-td">
+                                    <a th:href="@{/admin/userRecords/{id}(id=${user.getIduser()})}">Ведомости</a>
+                                </td>
+                                <td>
+                                    <form th:action="@{/admin/deleteUser/{id}(id=${user.getIduser()})}" method="post">
+                                        <input type="submit" value="Удалить">
+                                    </form>
+                                </td>
+                            </th:block>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+
+        <section id="groups1" class="groups-main">
+            <div class="statements-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Группа</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="group : ${groups}">
+                            <td th:text="${group.getName()}"></td>
+                            <td class="last-td">
+                                <a th:href="@{/admin/groupRecords/{id}(id=${group.getIdgroup()})}">Ведомости</a>
+                            </td>
+                            <td>
+                                <form th:action="@{/admin/deleteUser/{id}(id=${group.getIdgroup()})}" method="post">
+                                    <input type="submit" value="Удалить">
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showTable(id, idClose) {
+            let table = document.getElementById(id);
+            let tableClose = document.getElementById(idClose);
+
+            table.style.display = 'flex';
+            tableClose.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

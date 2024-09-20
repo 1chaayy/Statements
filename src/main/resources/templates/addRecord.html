@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add record</title>
+
+    <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css//header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+    <link rel="stylesheet" href="../static/css/logIn.css" th:href="@{/css/logIn.css}">
+
+    <link rel="stylesheet" href="../static/css/dropdownMenu.css" th:href="@{/css/dropdownMenu.css}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <form class="add-group-form" th:method="POST" th:action="@{/user/addRecord/{id}(id=${user.iduser})}" th:object="${record}" >
+        <h1>Добавление ведомости</h1>
+        <div class="input-group">
+            <label for="discipline">Дисциплина</label>
+            <select class="inf-p" id="discipline" name="discipline" th:field="*{iddiscipline}" required>
+                <option th:each="discipline : ${disciplines}" th:value="${discipline.iddiscipline}" th:text="${discipline.name}"></option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="type">Тип ведомости</label>
+            <select class="inf-p" id="type" name="type"  th:field="*{idtype}" required>
+                <option th:each="type : ${types}" th:value="${type.idtype}" th:text="${type.name}"></option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="group">Группа</label>
+            <select class="inf-p" id="group" name="group"  th:field="*{idgroup}"  required>
+                <option th:each="group : ${groups}" th:value="${group.idgroup}" th:text="${group.name}"></option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="user">Преподаватель</label>
+            <input type="text" id="user" name="user"  th:value="${user.getUsername()} + ' ' +${user.getLastname()}" readonly>
+        </div>
+        
+        <input type="submit" class="edit-button" value="Добавить">
+    </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+#logo {
+    padding: 0.5em;
+}
+
+#acc {
+    padding: 0.5em;
+}
+
+label, h1 {
+    font-weight: bold;
+}

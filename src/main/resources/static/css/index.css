@@ -1,0 +1,47 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 400;
+    color: #292929;
+    background-color: #f6f6f6;
+}
+
+table {
+    caret-color: transparent;
+}
+
+label {
+    caret-color: transparent;
+}
+
+h1 {
+    caret-color: transparent;
+}
+
+input, select {
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    padding: 0.5em;
+    color: #292929;
+    background-color: #ffffff00;
+    transition: color 0.3s, transform 0.3s;
+    caret-color: auto;
+}
+input:hover, select:hover {
+    color: #909090;
+    transform: scale(1.05)
+}
+
+a {
+    padding: 0.5em;
+    color: #292929;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: #909090;
+    cursor: pointer;
+}
+
+section {
+    caret-color: transparent;
+}

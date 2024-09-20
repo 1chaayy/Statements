@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records</title>
+
+    <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css//header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+    <link rel="stylesheet" href="../static/css/admin.css" th:href="@{/css/admin.css}">
+
+    <link rel="stylesheet" href="../static/css/logIn.css" th:href="@{/css/logIn.css}">
+
+    <link rel="stylesheet" href="../static/css/dropdownMenu.css" th:href="@{/css/dropdownMenu.css}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <section id="users2">
+        <table id="users-rec-table">
+            <thead>
+                <tr>
+                    <th>Дисциплина</th>
+                    <th>Тип ведомости</th>
+                    <th>Статус</th>
+                    <th>Группа</th>
+                    <th>Номер</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="record : ${records}">
+                    <td th:text="${record.getIddiscipline().getName()}"></td>
+                    <td th:text="${record.getIdtype().getName()}"></td>
+                    <td th:text="${record.getStatus()}"></td>
+                    <td th:text="${record.getIdgroup().getName()}"></td>
+                    <td th:text="${record.getIdrecord()}"></td>
+                    <td>
+                        <form th:action="@{/admin/deleteRecord/{id}(id=${record.getIdrecord()})}" method="post">
+                            <input type="submit" value="Удалить">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

@@ -1,0 +1,201 @@
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+/* Стили для общего контейнера списка */
+.dropdown {
+    width: 20%;
+    position: relative;
+    display: inline-block;
+    border-right: 1px solid black;
+    padding: 0.5em;
+    margin: 0.5em 0.5em 0.5em 0;
+}
+
+/* Стили для корневого списка */
+.dropdown > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Стили для элементов списка */
+.dropdown li {
+    position: relative;
+}
+.dropdown li li li {
+    left: 1em;
+}
+.dropdown li input:hover {
+    transform: none;
+}
+
+/* Стили для ссылок в списке */
+.dropdown li a {
+    display: block;
+}
+/* Убираем границы при фокусе и нажатии */
+.dropdown li a:focus,
+.dropdown li a:active {
+    outline: none;
+}
+
+/* Стили для подсписков */
+.dropdown ul ul {
+    display: none;
+    position: relative;
+    left: 1em;
+    top: 0;
+    z-index: 1;
+    
+}
+
+/* Стили для элементов подсписков */
+/* .dropdown ul ul li {
+} */
+
+/* Стили для подсписков на 3 уровне */
+.dropdown ul ul ul {
+    left: 1em;
+    top: 0;
+}
+
+/* Стили для открытого подсписка */
+.dropdown ul ul.open {
+    display: block;
+    transition: 0.3s;
+}
+
+.dropdown .toggle::before {
+    content: "\f078";
+    font-family: "FontAwesome";
+    /* font-size: 0.55em; */
+    margin-right: 7px;
+    display: inline-block;
+    rotate: -90deg;
+    transition: transform 0.2s ease;
+}
+
+.dropdown .toggle.open::before {
+    transform: rotate(90deg);
+}
+
+.dropdown .folder::before {
+    content: "\f07b";
+    font-family: "FontAwesome";
+    /* font-size: 0.55em; */
+    margin-right: 7px;
+    display: inline-block;
+}
+
+.statements-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+thead, td {
+    border-bottom: 1px solid #292929;
+}
+
+th, td {
+    margin: .6em;
+    padding: .5em;
+    text-align: start;
+}
+
+th {
+    font-weight: bold;
+}
+
+.student-table {
+    width: 97%;
+    margin: 1em;
+    display: flex;
+}
+
+.inf-about-user {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.inf-about-user h1 {
+    text-align: center;
+    font-size: 2em;
+    padding: .6em;
+    margin-bottom: 1em;
+}
+
+.inf-about-user label {
+    width: 10%;
+    font-size: 1em;
+}
+
+.inf-about-user .inf-p {
+    width: 80%;
+    padding: .7em;
+}
+
+.inf-about-user div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3em;
+    margin-bottom: 2.5em;
+    border-bottom: 1px solid #292929;
+}
+
+.input-group input:hover {
+    transform: none;
+}
+
+.add-group-form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    padding: 1em;
+}
+
+.add-group-form h1 {
+    text-align: center;
+    font-size: 2em;
+    padding: .6em;
+    margin-bottom: 1em;
+}
+
+.add-group-form .input-group {
+    width: 100%;
+    padding: .7em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+    margin-bottom: 2.5em;
+    border-bottom: 1px solid #292929;
+}
+
+.add-group-form label {
+    width: 20%;
+    font-size: 1em;
+}
+
+.add-group-form select {
+    width: 80%;
+}
+
+.admin-home-tables {
+    display: flex;
+}
+
+.users-main, .groups-main {
+    max-width: 100%;
+    width: 100%;
+}

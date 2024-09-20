@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="inf-about-user">
+        <h1>Информация о пользователе</h1>
+
+        <form class="form_profile" th:action="@{/account/{id}(id=${user.iduser})}" th:object="${user}" th:method="POST">
+            <div class="input-group">
+                <label for="first_name">Имя</label>
+                <input class="inf-p" type="text" id="first_name" name="first_name" th:field="*{username}" required>
+                <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" ></div>
+            </div>
+
+            <div class="input-group">
+                <label for="last_name">Фамилия</label>
+                <input class="inf-p" type="text" id="last_name" name="last_name"  th:field="*{lastname}" required>
+                <div style="color: red" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" ></div>
+            </div>
+
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input class="inf-p" type="email" id="email" name="email"  th:field="*{email}"  required>
+                <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></div>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Телефон</label>
+                <input class="inf-p" type="text" id="phone" name="phone" th:field="*{phone}" required>
+                <div style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" ></div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Пароль</label>
+                <input class="inf-p" type="text" id="password" name="password" th:field="*{password}" required>
+                <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></div>
+            </div>
+            <input type="submit" value="Изменить">
+            <a href="/logout">Выйти</a>
+        </form>
+    </div>
+</header>
+</body>
+</html>
