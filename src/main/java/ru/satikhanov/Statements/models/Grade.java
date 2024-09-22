@@ -11,23 +11,17 @@ import java.time.LocalDate;
 public class Grade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idgrade;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "idstudent")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "iddiscipline")
-    private Discipline discipline;
+    @JoinColumn(name = "idrecord")
+    private Record record;
 
     @Column(name = "grade")
-    private int grade; // Например, от 1 до 100
+    private String grade;
 
-    @ManyToOne
-    @JoinColumn(name = "iduser")
-    private User teacher;
-
-    @Column(name = "date")
-    private LocalDate date;
 }

@@ -31,4 +31,10 @@ public class Record {
     @JoinColumn(name = "idtype")
     private Type idtype;
 
+    @Override
+    public String toString() {
+        return "Record{" +
+                "idrecord=" + idrecord +
+                '}';
+    }
 }

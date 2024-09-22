@@ -52,6 +52,9 @@
                         <td th:text="${record.getStatus()}"></td>
                         <td th:text="${record.getIdgroup().getName()}"></td>
                         <td th:text="${record.getIduser().getLastname()} + ' ' + ${record.getIduser().getUsername()}"></td>
+                        <td th:if="${record.getStatus().equals('Открыта')}">
+                            <a th:href="@{/user/changeRecord/{id}(id=${record.getIdrecord()})}">Изменить</a>
+                        </td>
                         <td>
                             <form th:action="@{/user/deleteRecord/{id}(id=${record.idrecord})}" method="post">
                                 <input type="submit" value="Удалить">

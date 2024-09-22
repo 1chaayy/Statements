@@ -3,6 +3,7 @@ package ru.satikhanov.Statements.services.record;
 import lombok.Data;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.satikhanov.Statements.models.Group;
 import ru.satikhanov.Statements.models.Record;
 import ru.satikhanov.Statements.models.User;
@@ -75,5 +76,10 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public List<Record> getRecords() {
         return recordRepository.findAll();
+    }
+    @Transactional
+    public void closeRecordById(Integer id){
+        Record record = recordRepository.getRecordByIdrecord(id).get();
+        record.setStatus("Закрыта");
     }
 }

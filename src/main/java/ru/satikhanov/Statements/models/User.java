@@ -55,5 +55,7 @@ public class User {
 
     @OneToMany(mappedBy = "iduser")
     private List<Record> records;
+
+
 }
 

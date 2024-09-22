@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void updateUser(int id, User user) {
-        user.setRoleList(Collections.singletonList(roleRepository.getRoleByIdrole(2)));
+        user.setRoleList(userRepository.getUserByIduser(id).get().getRoleList());
         user.setIduser(id);
         userRepository.save(user);
     }

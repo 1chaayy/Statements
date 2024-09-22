@@ -1,12 +1,13 @@
 package ru.satikhanov.Statements.services.record;
 
+import org.springframework.stereotype.Component;
 import ru.satikhanov.Statements.models.Group;
 import ru.satikhanov.Statements.models.Record;
 import ru.satikhanov.Statements.models.User;
 
 import java.util.List;
 import java.util.Optional;
-
+@Component
 public interface RecordService {
     void addRecord(Record record);
     void deleteRecordByIdrecord(int id);
@@ -20,4 +21,5 @@ public interface RecordService {
     List<Record> getRecords();
     List<Record> getAllByIduser(User id);
     List<Record> getAllByIdgroup(Group id);
+    void closeRecordById(Integer id);
 }

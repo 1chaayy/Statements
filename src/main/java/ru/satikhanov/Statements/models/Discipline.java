@@ -22,4 +22,12 @@ public class Discipline {
 
     @OneToMany(mappedBy = "iddiscipline")
     private List<Record> records;
+
+    @Override
+    public String toString() {
+        return "Discipline{" +
+                "iddiscipline=" + iddiscipline +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

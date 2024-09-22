@@ -26,6 +26,6 @@ public class Student {
     private String lastname;
 
     @ManyToOne
-    @JoinColumn(name = "idgroup")
+    @JoinColumn(name = "idgroup", referencedColumnName = "idgroup")
     private Group idgroup;
 }
