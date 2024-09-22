@@ -25,6 +25,7 @@
     main{
         display: flex;
         flex-direction: column;
+        justify-content: start;
     }
 
     #statements-table2{
@@ -64,7 +65,7 @@
                 <td th:text="${cRecord.getIduser().getLastname()} + ' ' + ${cRecord.getIduser().getUsername()}"></td>
 
                 <td>
-                    <form th:action="@{/user/closeRecord/{id}(id=${cRecord.getIdrecord()})}" th:method="POST">
+                    <form th:if="${cRecord.getStatus().equals('Открыта')}" th:action="@{/user/closeRecord/{id}(id=${cRecord.getIdrecord()})}" th:method="POST">
                         <input type="submit" value="Закрыть">
                     </form>
                 </td>
@@ -99,7 +100,14 @@
                         <input type="hidden" name="idStudent" th:value="${student.getIdstudent()}">
 
                         <!-- Поле выбора оценки -->
-                        <select th:name="'grades_' + ${student.getIdstudent()}" required>
+                        <select th:if="${cRecord.getStatus().equals('Открыта')}"  th:name="'grades_' + ${student.getIdstudent()}" required>
+                            <option th:value="5" th:selected="${grades[student.getIdstudent()] == '5'}">Отлично (5)</option>
+                            <option th:value="4" th:selected="${grades[student.getIdstudent()] == '4'}">Хорошо (4)</option>
+                            <option th:value="3" th:selected="${grades[student.getIdstudent()] == '3'}">Удовлетворительно (3)</option>
+                            <option th:value="2" th:selected="${grades[student.getIdstudent()] == '2'}">Неудовлетворительно (2)</option>
+                            <option th:value="Неявка" th:selected="${grades[student.getIdstudent()] == 'Неявка'}">Неявка</option>
+                        </select>
+                        <select th:if="${cRecord.getStatus().equals('Закрыта')}"  th:name="'grades_' + ${student.getIdstudent()}" disabled>
                             <option th:value="5" th:selected="${grades[student.getIdstudent()] == '5'}">Отлично (5)</option>
                             <option th:value="4" th:selected="${grades[student.getIdstudent()] == '4'}">Хорошо (4)</option>
                             <option th:value="3" th:selected="${grades[student.getIdstudent()] == '3'}">Удовлетворительно (3)</option>
@@ -111,7 +119,7 @@
                 </tbody>
             </table>
             <input type="hidden" name="idRecord" th:value="${cRecord.getIdrecord()}">
-            <input type="submit" value="Сохранить оценки">
+            <input th:if="${cRecord.getStatus().equals('Открыта')}" type="submit" value="Сохранить оценки">
         </form>
     </div>
 

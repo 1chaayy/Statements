@@ -52,6 +52,10 @@ public class GradeService {
     }
 
     public Grade getGradeByStudentIdAndRecordId(Integer studentId, Integer recordId){
-        return gradeRepository.getGradeByStudentAndRecord(studentId, recordId).get();
+        Grade gradeEntity = new Grade();
+        gradeEntity.setStudent(studentRepository.getById(studentId));
+        gradeEntity.setRecord(recordRepository.getRecordByIdrecord(recordId).get());
+        gradeEntity.setGrade("5");
+        return gradeRepository.getGradeByStudentAndRecord(studentId, recordId).orElse(gradeEntity);
     }
 }
